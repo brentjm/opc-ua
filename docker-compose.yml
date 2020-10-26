@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+
+  python-opcua-server:
+    build: ./python-opcua-server
+    image: python-opcua-server
+    container_name: python-opcua-server
+    networks:
+      - opcua-app
+    restart: always
+
+  python-opcua-client:
+    build: ./python-opcua-client
+    image: python-opcua-client
+    container_name: python-opcua-client
+    networks:
+      - opcua-app
+    depends_on:
+      - python-opcua-server
+    restart: "no"
+
+networks:
+  opcua-app:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.51.1/27
