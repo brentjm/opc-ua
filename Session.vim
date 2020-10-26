@@ -10,8 +10,9 @@ set shortmess=aoO
 badd +1 docker-compose.yml
 badd +1 python-opcua-client/client.py
 badd +1 python-opcua-client/Dockerfile
-badd +1 python-opcua-server/Dockerfile
+badd +3 python-opcua-server/Dockerfile
 badd +1 python-opcua-server/server.py
+badd +0 python-opcua-server/logger_conf.yml
 argglobal
 silent! argdel *
 $argadd docker-compose.yml
@@ -50,7 +51,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists('python-opcua-server/Dockerfile') | buffer python-opcua-server/Dockerfile | else | edit python-opcua-server/Dockerfile | endif
+if bufexists('python-opcua-server/logger_conf.yml') | buffer python-opcua-server/logger_conf.yml | else | edit python-opcua-server/logger_conf.yml | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -60,11 +61,11 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 3 - ((2 * winheight(0) + 12) / 25)
+let s:l = 1 - ((0 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
+1
 normal! 0
 wincmd w
 2wincmd w
